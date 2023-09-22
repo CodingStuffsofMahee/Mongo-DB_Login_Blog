@@ -8,9 +8,6 @@ dotenv.config();
 
 app.use('/auth', LoginUser)
 
-app.get('/', () => {
-  res.send("OKK bhai ji")
-})
 
 app.get('/', (req,res) => {
   res.json({
