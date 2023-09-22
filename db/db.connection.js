@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
+const dotenv = require('dotenv');
+dotenv.config();
 const DatabaseConnection = () => {
-    mongoose.connect('mongodb://127.0.0.1:27017/UserDB');
+    mongoose.connect(process.env.MONGODB_URI);
     const db = mongoose.connection;
     db.on('connected', () => {
         console.log('Mongoose connection is successful');
