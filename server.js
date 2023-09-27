@@ -1,14 +1,17 @@
 const express=require('express')
 const app = express()
+const cors = require('cors')
 const DatabaseConnection = require('./db/db.connection')()
 const LoginUser = require('./Routes/login.routes')
 const dotenv = require('dotenv');
 dotenv.config();
 
-
+const corsOptions = {
+  origin: 'https://mongo-dbloginblog-production.up.railway.app',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 app.use('/auth', LoginUser)
-
-
+app.use(cors(corsOptions))
 app.get('/', (req,res) => {
   res.json({
       'message': 'SucessFull',
@@ -16,6 +19,6 @@ app.get('/', (req,res) => {
   })
 })
 const port = process.env.PORT || 5500
-app.listen(port , () => {
+app.listen(port , () => { 
     console.log("Server Started at "+port);
 })
