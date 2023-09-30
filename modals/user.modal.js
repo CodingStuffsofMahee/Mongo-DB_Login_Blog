@@ -47,6 +47,10 @@ const UserSchema = new mongoose.Schema({
         default:'not given'
         // default: randomUserName().items.username,
     },
+    profileUrl: {
+        type: String,
+        default:''
+    },
     email: {
         type: String,
         required: true,
