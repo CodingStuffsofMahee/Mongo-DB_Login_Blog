@@ -4,10 +4,12 @@ const bcrypt = require('bcrypt');
 const { hashPassword } = require('../utlis/hashingThePassword');
 
 const CreateUserController = async (req, res) => {
-    const userExists = await userModal.exists({ email: req.body.email, username: req.body.username })
+    const userExists = await userModal.exists({ email: req.body.email })
     const hashedPassword = await hashPassword(req.body.password);
 
-    if (!userExists) {
+    
+    console.log(userExists === null);
+    if (userExists === null) {
         await userModal.create({
             name: req.body.name,
             username: req.body.username,
